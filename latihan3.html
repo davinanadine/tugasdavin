@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>cicilan barang</title>
+  <script>
+    function hitungTotal() {
+      let table = document.getElementById("cicilan");
+      for (let i = 2; i < table.rows.length; i++) {  // mulai dari baris data
+        let cells = table.rows[i].cells;
+
+        // ambil angka dari setiap kolom
+        let uangMuka = parseInt(cells[2].innerText.replace(/[^0-9]/g, ""));
+        let cicilan1 = parseInt(cells[3].innerText.replace(/[^0-9]/g, ""));
+        let cicilan2 = parseInt(cells[4].innerText.replace(/[^0-9]/g, ""));
+        let cicilan3 = parseInt(cells[5].innerText.replace(/[^0-9]/g, ""));
+
+        let total = uangMuka + cicilan1 + cicilan2 + cicilan3;
+
+        // tampilkan hasil di kolom terakhir
+        cells[6].innerText = "Rp " + total.toLocaleString("id-ID");
+      }
+    }
+  </script>
+</head>
+<body 
+ onload="hitungTotal()">
+  <h2 align="center">Daftar cicilan barang</h2>
+  <table border="1" cellpadding="8" cellspacing="0" align="center" id="cicilan">
+    <tr>
+      <th rowspan="2">No</th>
+      <th rowspan="2">Nama Produk</th>
+      <th rowspan="2">Uang muka</th>
+      <th colspan="3">Cicilan</th>
+      <th rowspan="2">Total</th>
+    </tr>
+    <tr>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Televisi</td>
+      <td>Rp 700000</td>
+      <td>Rp 600000</td>
+      <td>Rp 600000</td>
+      <td>Rp 600000</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Kulkas</td>
+      <td>Rp 500000</td>
+      <td>Rp 300000</td>
+      <td>Rp 300000</td>
+      <td>Rp 300000</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Microwave</td>
+      <td>Rp 600000</td>
+      <td>Rp 400000</td>
+      <td>Rp 400000</td>
+      <td>Rp 400000</td>
+      <td></td>
+    </tr>
+  </table>
+</body>
+</html>
