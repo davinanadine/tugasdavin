@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>Latihan Menggunakan Objek Select</title>
+</head>
+<body>
+<script language="JavaScript">
+    function tampilMakanan() {
+        var pilihMakanan = document.dataForm.makanan.value;
+        document.dataForm.hasilMakanan.value = pilihMakanan;
+    }
+</script>
+
+<form name="dataForm">
+    <h1>Memilih Makanan Favorit Menggunakan Objek Select</h1>
+    <hr>
+    <h3>Pilih Makanan Favorit Kamu :</h3>
+    <select name="makanan" size="1">
+        <option value="Nasi Goreng">Nasi Goreng</option>
+        <option value="Mie Ayam">Mie Ayam</option>
+        <option value="Bakso">Bakso</option>
+        <option value="Sate Ayam">Sate Ayam</option>
+        <option value="Rendang">Rendang</option>
+    </select>
+
+    <p>
+        <input type="button" value="TAMPILKAN" onclick="tampilMakanan()">
+        <input type="reset" value="HAPUS">
+    </p>
+
+    <h3>Makanan yang kamu pilih :</h3>
+    <input type="text" name="hasilMakanan" size="40">
+</form>
+</body>
+</html>

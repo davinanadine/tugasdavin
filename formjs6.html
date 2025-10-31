@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Membuat Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin-top: 100px;
+        }
+        .container {
+            display: inline-block;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        table {
+            margin: 0 auto;
+            text-align: left;
+        }
+        input[type="text"] {
+            width: 150px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #aaa;
+        }
+        .buttons {
+            margin-top: 15px;
+        }
+        input[type="button"] {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            border-radius: 8px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function hitung(operator) {
+            var bil1 = parseFloat(document.getElementById("bil1").value);
+            var bil2 = parseFloat(document.getElementById("bil2").value);
+            var hasil = 0;
+            var pesan = "";
+
+            if (isNaN(bil1) || isNaN(bil2)) {
+                alert("Masukkan kedua bilangan terlebih dahulu!");
+                return;
+            }
+
+            switch(operator) {
+                case '+':
+                    hasil = bil1 + bil2;
+                    pesan = "Hasil Penjumlahan = " + hasil;
+                    break;
+                case '-':
+                    hasil = bil1 - bil2;
+                    pesan = "Hasil Pengurangan = " + hasil;
+                    break;
+                case '*':
+                    hasil = bil1 * bil2;
+                    pesan = "Hasil Perkalian = " + hasil;
+                    break;
+                case '/':
+                    if (bil2 === 0) {
+                        alert("Tidak bisa dibagi dengan nol!");
+                        return;
+                    }
+                    hasil = bil1 / bil2;
+                    pesan = "Hasil Pembagian = " + hasil;
+                    break;
+                case 'C':
+                    document.getElementById("bil1").value = "";
+                    document.getElementById("bil2").value = "";
+                    return;
+            }
+            alert(pesan);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Membuat Calculator</h2>
+        <table>
+            <tr>
+                <td>Bilangan 1:</td>
+                <td><input type="text" id="bil1"></td>
+            </tr>
+            <tr>
+                <td>Bilangan 2:</td>
+                <td><input type="text" id="bil2"></td>
+            </tr>
+        </table>
+        <div class="buttons">
+            <input type="button" value="+" onclick="hitung('+')">
+            <input type="button" value="-" onclick="hitung('-')">
+            <input type="button" value="" onclick="hitung('')">
+            <input type="button" value="/" onclick="hitung('/')">
+            <input type="button" value="C" onclick="hitung('C')">
+        </div>
+    </div>
+</body>
+</html>

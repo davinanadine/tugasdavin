@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>Latihan Menggunakan Objek Checkbox</title>
+</head>
+<body>
+<script language="JavaScript">
+    function cek_hobi(form)
+    {
+        var hobi1 = "";
+        var hobi2 = "";
+        var hobi3 = "";
+        if (form.musik.checked == true)
+        {
+            hobi1 = "Mendengarkan Musik";
+        }
+        if (form.game.checked == true)
+        {
+            hobi2 = " Bermain Game";
+        }
+        if (form.olahraga.checked == true)
+        {
+            hobi3 = "Olahraga";
+            
+        }
+        alert('Hobi kamu adalah ' + hobi1 + hobi2 + hobi3);
+    }
+</script>
+
+<form>
+    <h1>Memasukkan Data Menggunakan Objek Checkbox</h1>
+    <hr>
+    <p>Hobi kamu:
+        <input type="checkbox" value="ON" name="musik">Mendengarkan Musik
+        <input type="checkbox" value="ON" name="game">Bermain Game
+        <input type="checkbox" value="ON" name="olahraga">Olahraga
+
+    </p>
+    <hr>
+    <p>
+        <input type="button" value="CEK HOBI" onclick="cek_hobi(this.form)">
+        <input type="reset" value="HAPUS">
+    </p>
+</form>
+</body>
+</html>

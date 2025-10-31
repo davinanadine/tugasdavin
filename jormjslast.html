@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>Formulir Pendaftaran Siswa Baru SMK</title>
+    <script language="JavaScript">
+        function kirim() {
+            // Ambil data dari form
+            var nama = document.formulir.nama.value;
+            var alamat = document.formulir.alamat.value;
+            var asal = document.formulir.asal.value;
+            var jurusan = "";
+
+            // Cek jurusan yang dipilih
+            if (document.formulir.pplg.checked) jurusan += "PPLG ";
+            if (document.formulir.tjkt.checked) jurusan += "TJKT ";
+            if (document.formulir.tp.checked) jurusan += "TP ";
+            if (document.formulir.tsm.checked) jurusan += "TSM ";
+            if (document.formulir.tkro.checked) jurusan += "TKRO ";
+
+            // Tampilkan hasil ke form output
+            document.formulir_out.nama_out.value = nama;
+            document.formulir_out.alamat_out.value = alamat;
+            document.formulir_out.asal_out.value = asal;
+            document.formulir_out.jurusan_out.value = jurusan;
+        }
+    </script>
+</head>
+
+<body>
+    <h2>Formulir Pendaftaran Siswa Baru SMK</h2>
+    <form name="formulir">
+        <table>
+            <tr>
+                <td>Nama</td><td>:</td>
+                <td><input type="text" name="nama"></td>
+            </tr>
+            <tr>
+                <td>Alamat</td><td>:</td>
+                <td><input type="text" name="alamat"></td>
+            </tr>
+            <tr>
+                <td>Asal Sekolah</td><td>:</td>
+                <td>
+                    <select name="asal">
+                        <option value="SMP">SMP</option>
+                        <option value="MTs">MTs</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Jurusan Dipilih</td><td>:</td>
+                <td>
+                    <input type="checkbox" name="pplg"> PPLG<br>
+                    <input type="checkbox" name="tjkt"> TJKT<br>
+                    <input type="checkbox" name="tp"> TP<br>
+                    <input type="checkbox" name="tsm"> TSM<br>
+                    <input type="checkbox" name="tkro"> TKRO
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center">
+                    <input type="button" value="Kirim" onclick="kirim()">
+                    <input type="reset" value="Reset">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br><br>
+
+    <form name="formulir_out">
+        <table>
+            <tr><td>Nama</td><td>:</td><td><input type="text" name="nama_out"></td></tr>
+            <tr><td>Alamat</td><td>:</td><td><input type="text" name="alamat_out"></td></tr>
+            <tr><td>Asal Sekolah</td><td>:</td><td><input type="text" name="asal_out"></td></tr>
+            <tr><td>Jurusan</td><td>:</td><td><textarea name="jurusan_out" rows="3" cols="30"></textarea></td></tr>
+        </table>
+    </form>
+</body>
+</html>
