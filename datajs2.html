@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Menghitung Indeks Prestasi By Davina Nadin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f6fa;
+            background-image: url(birubg.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            width: 500px;
+            margin: 50px auto;
+            border: 2px solid #002B5B;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        h2, p {
+            text-align: center;
+            margin: 0;
+            color: #002B5B;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        td {
+            padding: 6px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 95%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        input[readonly] {
+            background-color: #f1f3f5;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #002B5B;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 6px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #00408f;
+        }
+
+        .logo {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #555;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Menghitung Indeks Prestasi</h2>
+        <p>Peserta Didik SMK Igasar Pindad Bandung</p>
+
+        <div class="logo">
+            <img src="images-removebg-preview.png" width="80">
+        </div>
+
+        <form name="formNilai">
+            <table>
+                <tr>
+                    <td>Quiz (10%)</td>
+                    <td><input type="number" name="quiz" min="0" max="100"></td>
+                </tr>
+                <tr>
+                    <td>Tugas (20%)</td>
+                    <td><input type="number" name="tugas" min="0" max="100"></td>
+                </tr>
+                <tr>
+                    <td>UTS (30%)</td>
+                    <td><input type="number" name="uts" min="0" max="100"></td>
+                </tr>
+                <tr>
+                    <td>UAS (40%)</td>
+                    <td><input type="number" name="uas" min="0" max="100"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <button type="button" onclick="hitung()">Hitung</button>
+                        <button type="reset">Ulang</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nilai Akhir</td>
+                    <td><input type="text" name="akhir" readonly></td>
+                </tr>
+                <tr>
+                    <td>Indeks Prestasi</td>
+                    <td><input type="text" name="indeks" readonly></td>
+                </tr>
+                <tr>
+                    <td>Keterangan</td>
+                    <td><input type="text" name="ket" readonly></td>
+                </tr>
+            </table>
+        </form>
+
+    <script>
+        function hitung() {
+            let quiz = document.formNilai.quiz.value;
+            let tugas = document.formNilai.tugas.value;
+            let uts = document.formNilai.uts.value;
+            let uas = document.formNilai.uas.value;
+
+            if (quiz === "" || tugas === "" || uts === "" || uas === "") {
+                alert("Semua nilai harus diisi!");
+                return;
+            }
+
+            quiz = parseFloat(quiz);
+            tugas = parseFloat(tugas);
+            uts = parseFloat(uts);
+            uas = parseFloat(uas);
+
+            if (quiz < 0 || quiz > 100 || tugas < 0 || tugas > 100 || uts < 0 || uts > 100 || uas < 0 || uas > 100) {
+                alert("Nilai harus antara 0 - 100!");
+                return;
+            }
+
+            let nilaiAkhir = (quiz * 0.1) + (tugas * 0.2) + (uts * 0.3) + (uas * 0.4);
+            document.formNilai.akhir.value = nilaiAkhir.toFixed(2);
+
+            let indeks = "", ket = "";
+            if (nilaiAkhir > 80 && nilaiAkhir <= 100) {
+                indeks = "A"; ket = "Lulus dengan Sangat Baik";
+            } else if (nilaiAkhir > 68 && nilaiAkhir <= 80) {
+                indeks = "B"; ket = "Lulus dengan Baik";
+            } else if (nilaiAkhir > 55 && nilaiAkhir <= 68) {
+                indeks = "C"; ket = "Lulus dengan Cukup";
+            } else if (nilaiAkhir > 38 && nilaiAkhir <= 55) {
+                indeks = "D"; ket = "Lulus dengan Kurang";
+            } else {
+                indeks = "E"; ket = "Tidak Lulus";
+            }
+
+            document.formNilai.indeks.value = indeks;
+            document.formNilai.ket.value = ket;
+        }
+    </script>
+</body>
+</html>

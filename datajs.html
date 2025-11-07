@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Igasar Pindad Bandung</title>
+<style>
+  body {
+    background-image: url(pemandangan.jpg); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+  }
+
+  table {
+    border-collapse: collapse;
+    margin: 30px auto;
+    width: 80%;
+    background: rgba(150, 193, 194, 0.9);
+    box-shadow: 0 0 10px rgba(24, 33, 107, 0.2);
+    border-radius: px;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+
+  h2 {
+    text-align: center;
+    color: #2e3b55;
+  }
+
+  input[type="text"], input[type="number"], select {
+    width: 150px;
+    padding: 4px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+  }
+
+  input[type="button"], input[type="reset"] {
+    padding: 6px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2e86de;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  input[type="button"]:hover, input[type="reset"]:hover {
+    background-color: #1b4f72;
+  }
+
+  .member-options {
+    background-color: #f0f8ff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .logo {
+    text-align: center;
+    padding: 10px;
+  }
+</style>
+</head>
+<body>
+
+  <table border="1" cellspacing="0" cellpadding="5">
+    <tr>
+      <td align="center">
+        <div class="logo">
+          <img src="images-removebg-preview.png" width="80"><br>
+          <h2>TRAVEL IGASAR PINDAD BANDUNG</h2>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table width="100%" border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <!-- DATA PENUMPANG -->
+            <td width="50%" valign="top">
+              <center><b>Data Penumpang</b></center>
+              <table align="center">
+                <tr>
+                  <td>Nama</td>
+                  <td>:</td>
+                  <td><input type="text" id="nama"></td>
+                </tr>
+                <tr>
+                  <td>Tujuan</td>
+                  <td>:</td>
+                  <td>
+                    <select id="tujuan">
+                      <option value="">Pilih Tujuan Anda</option>
+                      <option value="Jogjakarta">Jogjakarta</option>
+                      <option value="Surabaya">Surabaya</option>
+                      <option value="Semarang">Semarang</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Jumlah Tiket</td>
+                  <td>:</td>
+                  <td><input type="number" id="jumlah" min="1"></td>
+                </tr>
+                <tr>
+                  <td>Member</td>
+                  <td>:</td>
+                  <td class="member-options">
+                    <label><input type="radio" name="member" value="Gold"> Gold</label><br>
+                    <label><input type="radio" name="member" value="Silver"> Silver</label><br>
+                    <label><input type="radio" name="member" value="Bukan" checked> Bukan Member</label>
+                  </td>
+                </tr>
+              </table>
+            </td>
+
+            <!-- DATA PEMBAYARAN -->
+            <td width="50%" valign="top">
+              <center><b>Data Pembayaran</b></center>
+              <table align="center">
+                <tr>
+                  <td>Harga Tiket</td>
+                  <td>:</td>
+                  <td><input type="text" id="harga" readonly></td>
+                </tr>
+                <tr>
+                  <td>Sub Total</td>
+                  <td>:</td>
+                  <td><input type="text" id="subtotal" readonly></td>
+                </tr>
+                <tr>
+                  <td>Diskon</td>
+                  <td>:</td>
+                  <td><input type="text" id="diskon" readonly></td>
+                </tr>
+                <tr>
+                  <td>Total Bayar</td>
+                  <td>:</td>
+                  <td><input type="text" id="total" readonly></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+        <center>
+          <br>
+          <input type="button" value="Hitung" onclick="hitung()">
+          <input type="button" value="Bayar" onclick="bayar()">
+          <input type="reset" value="Ulang" onclick="location.reload();">
+        </center>
+      </td>
+    </tr>
+  </table>
+
+<script>
+function hitung() {
+  let nama = document.getElementById("nama").value;
+  let tujuan = document.getElementById("tujuan").value;
+  let jumlah = parseInt(document.getElementById("jumlah").value);
+  let member = document.querySelector('input[name="member"]:checked').value;
+
+  if (nama === "" || tujuan === "" || isNaN(jumlah) || jumlah <= 0) {
+    alert("Harap isi semua data dengan benar!");
+    return;
+  }
+
+  let harga = 0;
+  if (tujuan === "Jogjakarta") harga = 320000;
+  else if (tujuan === "Surabaya") harga = 540000;
+  else if (tujuan === "Semarang") harga = 240000;
+
+  let subtotal = harga * jumlah;
+  let diskon = 0;
+  if (member === "Gold") diskon = subtotal * 0.2;
+  else if (member === "Silver") diskon = subtotal * 0.1;
+  let total = subtotal - diskon;
+
+  document.getElementById("harga").value = "Rp " + harga.toLocaleString();
+  document.getElementById("subtotal").value = "Rp " + subtotal.toLocaleString();
+  document.getElementById("diskon").value = "Rp " + diskon.toLocaleString();
+  document.getElementById("total").value = "Rp " + total.toLocaleString();
+}
+
+function bayar() {
+  let totalStr = document.getElementById("total").value;
+  if (totalStr === "") {
+    alert("Silakan tekan tombol HITUNG terlebih dahulu!");
+    return;
+  }
+
+  let total = parseInt(totalStr.replace(/[^\d]/g, ''));
+  let bayar = prompt("Masukkan jumlah uang pembayaran:");
+
+  if (bayar === null) return;
+  bayar = parseInt(bayar);
+
+  if (isNaN(bayar) || bayar < total) {
+    alert("Uang tidak cukup atau input tidak valid!");
+    return;
+  }
+
+  let kembalian = bayar - total;
+
+  // Simpan data ke localStorage
+  let data = {
+    nama: document.getElementById("nama").value,
+    tujuan: document.getElementById("tujuan").value,
+    jumlah: document.getElementById("jumlah").value,
+    member: document.querySelector('input[name="member"]:checked').value,
+    harga: document.getElementById("harga").value,
+    subtotal: document.getElementById("subtotal").value,
+    diskon: document.getElementById("diskon").value,
+    total: document.getElementById("total").value,
+    dibayarkan: "Rp " + bayar.toLocaleString(),
+    kembalian: "Rp " + kembalian.toLocaleString()
+  };
+
+  localStorage.setItem("buktiPembayaran", JSON.stringify(data));
+
+  // Pindah ke halaman bukti
+  window.location.href = "datajsbukti.html";
+}
+</script>
+
+</body>
+</html>
